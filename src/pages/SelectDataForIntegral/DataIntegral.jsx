@@ -40,22 +40,25 @@ export const DataIntegral = () => {
     const parsedUpperLimit = parseFloat(upperLimit);
   
     // проверяем, какой метод интегрирования выбран
-    switch (method) {
-      case "right":
-        result = methodRight(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
-        break;
-      case "left":
-        result = methodLeft(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
-        break;
-      case "parab":
-        result = methodParabol(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
-        break;
-      case "trap":
-        result = methodTrap(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
-        break;
-      default:
-        break;
+    if (step === "regular") {
+      switch (method) {
+        case "right":
+          result = methodRight(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
+          break;
+        case "left":
+          result = methodLeft(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
+          break;
+        case "parab":
+          result = methodParabol(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
+          break;
+        case "trap":
+          result = methodTrap(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
+          break;
+        default:
+          break;
+      }
     }
+    
   
     // возвращаем результат вычисления интеграла
     return result;
