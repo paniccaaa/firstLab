@@ -6,10 +6,10 @@ import { integralsMethods, stepsVersions, methodLeft, methodRight, methodParabol
 export const DataIntegral = () => {
   const [method, setMethod] = React.useState("right"); // выбранный метод интегрирования
   const [step, setStep] = React.useState("regular"); // выбранный тип шага
-  const [func, setFunc] = React.useState(); // введенная пользователем функция
-  const [pieces, setPieces] = React.useState(); // введенное пользователем количество разбиений
-  const [lowerLimit, setLowerLimit] = React.useState(); // введенный пользователем нижний предел интегрирования
-  const [upperLimit, setUpperLimit] = React.useState();
+  const [func, setFunc] = React.useState(""); // введенная пользователем функция
+  const [pieces, setPieces] = React.useState(1); // введенное пользователем количество разбиений
+  const [lowerLimit, setLowerLimit] = React.useState(0); // введенный пользователем нижний предел интегрирования
+  const [upperLimit, setUpperLimit] = React.useState(1);
   
 
   const handleFuncChange = (event) => {
@@ -34,19 +34,24 @@ export const DataIntegral = () => {
   const calculateIntegral = () => {
     let result = 0;
   
+    // преобразуем значения полей ввода в числа
+    const parsedPieces = parseInt(pieces);
+    const parsedLowerLimit = parseFloat(lowerLimit);
+    const parsedUpperLimit = parseFloat(upperLimit);
+  
     // проверяем, какой метод интегрирования выбран
     switch (method) {
       case "right":
-        result = methodRight(func, lowerLimit, upperLimit, pieces);
+        result = methodRight(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
         break;
       case "left":
-        result = methodLeft(func, lowerLimit, upperLimit, pieces);
+        result = methodLeft(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
         break;
       case "parab":
-        result = methodParabol(func, lowerLimit, upperLimit, pieces);
+        result = methodParabol(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
         break;
       case "trap":
-        result = methodTrap(func, lowerLimit, upperLimit, pieces);
+        result = methodTrap(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
         break;
       default:
         break;
