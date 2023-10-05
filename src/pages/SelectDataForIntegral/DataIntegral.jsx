@@ -6,11 +6,12 @@ import { integralsMethods, stepsVersions, methodLeft, methodRight, methodParabol
 export const DataIntegral = () => {
   const [method, setMethod] = React.useState("right"); // выбранный метод интегрирования
   const [step, setStep] = React.useState("regular"); // выбранный тип шага
-  const [func, setFunc] = React.useState(""); // введенная пользователем функция
-  const [pieces, setPieces] = React.useState(""); // введенное пользователем количество разбиений
-  const [lowerLimit, setLowerLimit] = React.useState(""); // введенный пользователем нижний предел интегрирования
-  const [upperLimit, setUpperLimit] = React.useState("");
-  // функция для обработки изменений в TextField с функцией
+  const [func, setFunc] = React.useState(); // введенная пользователем функция
+  const [pieces, setPieces] = React.useState(); // введенное пользователем количество разбиений
+  const [lowerLimit, setLowerLimit] = React.useState(); // введенный пользователем нижний предел интегрирования
+  const [upperLimit, setUpperLimit] = React.useState();
+  
+
   const handleFuncChange = (event) => {
     setFunc(event.target.value);
   };

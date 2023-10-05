@@ -1,29 +1,16 @@
 
-// export const methodRight = (func, a, b, pieces) => {
-//   let step = (b - a) / pieces
-//   let x = a
-//   let ans = 0
-//   while (x < (b - step)) {
-//     ans = ans + eval(func.replace(/x/g, x))
-//     x += step
-//   }
-//   return ans * step
-// }
-
-
-export const methodRight = (func, a, b, pieces) => {
-  const step = (b - a) / pieces;
-  let x = a;
-  let ans = 0;
-  const f = new Function('x', `return ${func}`);
-
-  while (x < (b - step)) {
-    ans = ans + f(x);
-    x += step;
+export const methodRight = (funcStr, lowerLimit, upperLimit, partitions) => {
+  const dx = (upperLimit - lowerLimit) / partitions; // шаг разбиения
+  let sum = 0;
+  for (let i = 1; i <= partitions; i++) {
+    const x = lowerLimit + i * dx; // правая граница прямоугольника
+    const y = eval(funcStr.replace(/x/g, x)); // значение функции в точке x
+    sum += y * dx; // площадь прямоугольника
   }
-
-  return ans * step;
+  return sum;
 }
+
+
 
 export const methodLeft = (func, a, b, pieces) => {
   let step = (b - a) / pieces;
@@ -62,6 +49,19 @@ export const methodTrap = (func, a, b, pieces) => {
 
   return ans;
 }
+
+// export const methodTrap = (func, a, b, pieces) => {
+//   const step = (b - a) / pieces;
+//   let x = a + step;
+//   let ans = (eval(func, {"builtins": null}, {"cos": Math.cos, "sin": Math.sin, "tan": Math.tan, "x": a}) + eval(func, {"builtins": null}, {"cos": Math.cos, "sin": Math.sin, "tan": Math.tan, "x": b})) / 2;
+
+//   while (x < b) {
+//     ans = ans + eval(func, {"builtins": null}, {"cos": Math.cos, "sin": Math.sin, "tan": Math.tan, "x": x});
+//     x += step;
+//   }
+
+//   return ans * step;
+// }
 
 
 export const integralsMethods = [
