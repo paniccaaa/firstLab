@@ -92,10 +92,10 @@ export const DataIntegral = () => {
         </MenuItem>
       ))}
     </TextField>
-    <TextField placeholder="Введите функцию" value={func} onChange={handleFuncChange} />
-    <TextField placeholder="Введите кол-во разбиений" value={pieces} onChange={handlePiecesChange} />
-    <TextField placeholder="Введите нижний предел" value={lowerLimit} onChange={handleLowerLimitChange} />
-    <TextField placeholder="Введите верхний предел" value={upperLimit} onChange={handleUpperLimitChange} />
+    <TextField helperText="Введите функцию" placeholder="Введите функцию" value={func} onChange={handleFuncChange} />
+    <TextField helperText="Введите кол-во разбиений" placeholder="Введите кол-во разбиений" value={pieces} onChange={handlePiecesChange} />
+    <TextField helperText="Введите нижний предел" placeholder="Введите нижний предел" value={lowerLimit} onChange={handleLowerLimitChange} />
+    <TextField helperText="Введите верхний предел" placeholder="Введите верхний предел" value={upperLimit} onChange={handleUpperLimitChange} />
     <Button onClick={() => alert(calculateIntegral())}>Вычислить интеграл</Button>
   </div>
   )
