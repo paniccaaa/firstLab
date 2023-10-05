@@ -20,12 +20,12 @@ export const DataIntegral = () => {
     setPieces(event.target.value);
   };
 
-  // функция для обработки изменений в TextField с нижним пределом интегрирования
+  
   const handleLowerLimitChange = (event) => {
     setLowerLimit(event.target.value);
   };
 
-  // функция для обработки изменений в TextField с верхним пределом интегрирования
+  
   const handleUpperLimitChange = (event) => {
     setUpperLimit(event.target.value);
   };

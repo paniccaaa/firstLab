@@ -10,12 +10,15 @@
 //   return ans * step
 // }
 
+
 export const methodRight = (func, a, b, pieces) => {
   const step = (b - a) / pieces;
   let x = a;
   let ans = 0;
+  const f = new Function('x', `return ${func}`);
+
   while (x < (b - step)) {
-    ans = ans + eval(func, {"builtins": null}, {"cos": Math.cos, "sin": Math.sin, "tan": Math.tan, "x": x});
+    ans = ans + f(x);
     x += step;
   }
 
