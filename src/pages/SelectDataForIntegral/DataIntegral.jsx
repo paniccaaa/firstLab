@@ -1,5 +1,5 @@
 import React from "react"
-import { MenuItem, TextField } from "@mui/material"
+import { MenuItem, TextField, Button } from "@mui/material"
 import styles from "./DataIntegral.module.scss"
 import { integralsMethods, stepsVersions, methodLeft, methodRight, methodParabol, methodTrap } from "./helpers/allMethods"
 
@@ -90,7 +90,7 @@ export const DataIntegral = () => {
     <TextField placeholder="Введите кол-во разбиений" value={pieces} onChange={handlePiecesChange} />
     <TextField placeholder="Введите нижний предел" value={lowerLimit} onChange={handleLowerLimitChange} />
     <TextField placeholder="Введите верхний предел" value={upperLimit} onChange={handleUpperLimitChange} />
-    <button onClick={() => alert(calculateIntegral())}>Вычислить интеграл</button>
+    <Button onClick={() => alert(calculateIntegral())}>Вычислить интеграл</Button>
   </div>
   )
 }

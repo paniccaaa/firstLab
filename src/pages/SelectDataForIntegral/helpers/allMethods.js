@@ -1,13 +1,25 @@
 
+// export const methodRight = (func, a, b, pieces) => {
+//   let step = (b - a) / pieces
+//   let x = a
+//   let ans = 0
+//   while (x < (b - step)) {
+//     ans = ans + eval(func.replace(/x/g, x))
+//     x += step
+//   }
+//   return ans * step
+// }
+
 export const methodRight = (func, a, b, pieces) => {
-  let step = (b - a) / pieces
-  let x = a
-  let ans = 0
+  const step = (b - a) / pieces;
+  let x = a;
+  let ans = 0;
   while (x < (b - step)) {
-    ans = ans + eval(func.replace(/x/g, x))
-    x += step
+    ans = ans + eval(func, {"builtins": null}, {"cos": Math.cos, "sin": Math.sin, "tan": Math.tan, "x": x});
+    x += step;
   }
-  return ans * step
+
+  return ans * step;
 }
 
 export const methodLeft = (func, a, b, pieces) => {
