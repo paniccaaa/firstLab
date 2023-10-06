@@ -6,7 +6,7 @@ import { integralsMethods, stepsVersions, methodLeft, methodRight, methodParabol
 export const DataIntegral = () => {
   const [method, setMethod] = React.useState("right"); // выбранный метод интегрирования
   const [step, setStep] = React.useState("regular"); // выбранный тип шага
-  const [func, setFunc] = React.useState(""); // введенная пользователем функция
+  const [func, setFunc] = React.useState("x / 2"); // введенная пользователем функция
   const [pieces, setPieces] = React.useState(1); // введенное пользователем количество разбиений
   const [lowerLimit, setLowerLimit] = React.useState(0); // введенный пользователем нижний предел интегрирования
   const [upperLimit, setUpperLimit] = React.useState(1);
@@ -65,8 +65,9 @@ export const DataIntegral = () => {
   };
 
   return (
-    <div>
-    <h1 className={styles.integral_text}>Вычисление интеграла</h1>
+    <div className={styles.integral_container}>
+    <h1 className={styles.integral_text}>Вычисление интеграла</h1> 
+    <h2 className={styles.integral_text}>Если вам нужно ввести тригонометрическую функцию или любую другую, то воспользуйтесь объектом Math: <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math">Документация</a></h2>
     <TextField
       id="outlined-select-method"
       select
@@ -95,11 +96,11 @@ export const DataIntegral = () => {
         </MenuItem>
       ))}
     </TextField>
-    <TextField helperText="Введите функцию" placeholder="Введите функцию" value={func} onChange={handleFuncChange} />
-    <TextField helperText="Введите кол-во разбиений" placeholder="Введите кол-во разбиений" value={pieces} onChange={handlePiecesChange} />
-    <TextField helperText="Введите нижний предел" placeholder="Введите нижний предел" value={lowerLimit} onChange={handleLowerLimitChange} />
-    <TextField helperText="Введите верхний предел" placeholder="Введите верхний предел" value={upperLimit} onChange={handleUpperLimitChange} />
-    <Button onClick={() => alert(calculateIntegral())}>Вычислить интеграл</Button>
+    <TextField helperText="Введите функцию" value={func} onChange={handleFuncChange} />
+    <TextField helperText="Введите кол-во разбиений" value={pieces} onChange={handlePiecesChange} />
+    <TextField helperText="Введите нижний предел" value={lowerLimit} onChange={handleLowerLimitChange} />
+    <TextField helperText="Введите верхний предел" value={upperLimit} onChange={handleUpperLimitChange} />
+    <Button variant="contained" onClick={() => alert(calculateIntegral())}>Вычислить интеграл</Button>
   </div>
   )
 }
