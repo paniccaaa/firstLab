@@ -7,7 +7,7 @@ export const Home = () => {
     <div className={styles.home_container}>
       
       <Button onClick={() => navigate("/integral")} variant="contained" type="submit">Интегрирование</Button>
-      <Button onClick={() => navigate("/diff")} variant="contained" type="submit">Дифференцирование</Button>
+      {/* <Button onClick={() => navigate("/diff")} variant="contained" type="submit">Дифференцирование</Button> */}
     </div>
   )
 }

@@ -7,6 +7,7 @@ export const methodRight = (funcStr, lowerLimit, upperLimit, partitions) => {
     const y = eval(funcStr.replace(/x/g, x)); // значение функции в точке x
     sum += y * dx; // площадь прямоугольника
   }
+
   return sum;
 }
 
