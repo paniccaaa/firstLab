@@ -72,7 +72,7 @@ export const DataIntegral = () => {
 
   return (
     <div className={styles.integral_container}>
-    <h1 className={styles.integral_text}>Вычисление интеграла</h1> 
+    {/* <h1 className={styles.integral_text}>Вычисление интеграла</h1>  */}
     <h2 className={styles.integral_text}>Если вам нужно ввести тригонометрическую функцию или любую другую, то воспользуйтесь объектом Math: <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math">Документация</a></h2>
     <TextField
       id="outlined-select-method"
