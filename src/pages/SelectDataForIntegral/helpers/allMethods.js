@@ -49,7 +49,7 @@ export const approximateIntegration = (func, a, b, n) => {
     let x = a + hs;
 
     while (x < b - hv) {
-      S2 += eval(func);
+      S2 += eval(func.replace(/x/g, x));
       x += hv;
     }
 
