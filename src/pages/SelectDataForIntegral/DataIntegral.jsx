@@ -1,7 +1,7 @@
 import React from "react"
 import { MenuItem, TextField, Button } from "@mui/material"
 import styles from "./DataIntegral.module.scss"
-import { integralsMethodsRegular, integralsMethodsVariable, stepsVersions, methodLeft, methodRight, methodParabol, methodTrap, methodLeftVariable } from "./helpers/allMethods"
+import { integralsMethodsRegular, integralsMethodsVariable, stepsVersions, methodLeft, methodRight, methodParabol, methodTrap, methodLeftVariable, approximateIntegration } from "./helpers/allMethods"
 
 export const DataIntegral = () => {
   const [method, setMethod] = React.useState("left"); // выбранный метод интегрирования
@@ -61,12 +61,12 @@ export const DataIntegral = () => {
       switch (method) {
         case "left":
           result = methodLeftVariable(func, parsedLowerLimit, parsedUpperLimit, parsedPieces)  
-      }
+        case "left2":
+          result = approximateIntegration(func, parsedLowerLimit, parsedUpperLimit, parsedPieces)
+      } 
 
     }
     
-  
-    // возвращаем результат вычисления интеграла
     return result;
   };
 

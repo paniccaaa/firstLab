@@ -24,6 +24,49 @@ export const methodLeft = (func, a, b, pieces) => {
   return ans * step;
 }
 
+export const approximateIntegration = (func, a, b, n) => {
+  // Инициализация начальных значений
+  let hv = (b - a) / n;
+  let S1 = 0;
+  let S2 = 0;
+  let I1 = 0;
+  let I2 = 0;
+  const tolerance = 0.001;
+
+  // Выполнение первой итерации
+  for (let i = 1; i <= n; i++) {
+    const x = a + hv * (i - 1);
+    S1 += eval(func);
+  }
+
+  I1 = hv * S1;
+
+  // Выполнение последующих итераций
+  for (let count = 0; count < 3; count++) {
+    const hs = hv / 2;
+
+    S2 = 0;
+    let x = a + hs;
+
+    while (x < b - hv) {
+      S2 += eval(func);
+      x += hv;
+    }
+
+    S1 = S1 + S2;
+    I2 = I1;
+    I1 = hv * S1;
+
+    if (Math.abs(I2 - I1) < tolerance) {
+      break;
+    }
+
+    hv = hs;
+  }
+
+  return I1 / 2;
+};
+
 export const methodLeftVariable = (func, a, b, n) => {
   let h = (b - a) / n;
   let IN = 0;
@@ -93,19 +136,6 @@ export const methodTrap = (func, a, b, pieces) => {
   return ans;
 };
 
-// export const methodTrap = (func, a, b, pieces) => {
-//   const step = (b - a) / pieces;
-//   let x = a + step;
-//   let ans = (eval(func, {"builtins": null}, {"cos": Math.cos, "sin": Math.sin, "tan": Math.tan, "x": a}) + eval(func, {"builtins": null}, {"cos": Math.cos, "sin": Math.sin, "tan": Math.tan, "x": b})) / 2;
-
-//   while (x < b) {
-//     ans = ans + eval(func, {"builtins": null}, {"cos": Math.cos, "sin": Math.sin, "tan": Math.tan, "x": x});
-//     x += step;
-//   }
-
-//   return ans * step;
-// }
-
 export const integralsMethodsRegular = [
   {
     value: 'right',
@@ -128,7 +158,11 @@ export const integralsMethodsRegular = [
 export const integralsMethodsVariable = [
   {
     value: 'left',
-    label: 'Левых частей',
+    label: 'Левых частей(медленный)',
+  },
+  {
+    value: 'left2',
+    label: 'Левых частей(быстрый)',
   },
 ];
 

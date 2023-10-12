@@ -19,7 +19,7 @@ function App() {
       <div className={styles.main_container}>
         <div>
         <Link to="/">
-          <h1 className={styles.he}>Лабораторная работа номер 1</h1>
+          <h1 className={styles.he}>Вычислительная математика</h1>
         </Link>
         </div>
         <Routes>
