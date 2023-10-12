@@ -60,10 +60,14 @@ export const DataIntegral = () => {
     } else {
       switch (method) {
         case "left":
-          result = methodLeftVariable(func, parsedLowerLimit, parsedUpperLimit, parsedPieces)  
+          result = methodLeftVariable(func, parsedLowerLimit, parsedUpperLimit, parsedPieces); 
+          break; 
         case "left2":
-          result = approximateIntegration(func, parsedLowerLimit, parsedUpperLimit, parsedPieces)
-      } 
+          result = approximateIntegration(func, parsedLowerLimit, parsedUpperLimit, parsedPieces);
+          break;
+        default:
+          break;
+        } 
 
     }
     
@@ -110,7 +114,7 @@ export const DataIntegral = () => {
     <TextField helperText="Введите кол-во разбиений" value={pieces} onChange={handlePiecesChange} />
     <TextField helperText="Введите нижний предел" value={lowerLimit} onChange={handleLowerLimitChange} />
     <TextField helperText="Введите верхний предел" value={upperLimit} onChange={handleUpperLimitChange} />
-    <Button variant="contained" onClick={() => console.log(calculateIntegral())}>Вычислить интеграл</Button>
+    <Button variant="contained" onClick={() => alert(calculateIntegral())}>Вычислить интеграл</Button>
   </div>
   )
 }

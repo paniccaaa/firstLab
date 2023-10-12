@@ -31,7 +31,7 @@ export const approximateIntegration = (func, a, b, n) => {
   let S2 = 0;
   let I1 = 0;
   let I2 = 0;
-  const tolerance = 0.001;
+  const tolerance = 0.01;
 
   // Выполнение первой итерации
   for (let i = 1; i <= n; i++) {
@@ -63,7 +63,7 @@ export const approximateIntegration = (func, a, b, n) => {
 
     hv = hs;
   }
-  //console.log(I2 / 2);
+  console.log('это быстрый метод', I1 / 2);
   return I1 / 2;
 };
 
@@ -72,7 +72,7 @@ export const methodLeftVariable = (func, a, b, n) => {
   let IN = 0;
   let S2 = 0;
   let x = a;
-  let E = 0.001;
+  let E = 0.01;
 
   S2 = S2 + eval(func.replace(/x/g, x));
   x = x + h;
@@ -101,7 +101,7 @@ export const methodLeftVariable = (func, a, b, n) => {
     IN = I2N;
     h = h / 2;
   }
-  //console.log(I2N);
+  console.log('это медленный метод', I2N);
   return I2N;
 };
 
