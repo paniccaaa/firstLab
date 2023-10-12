@@ -1,10 +1,10 @@
 import React from "react"
 import { MenuItem, TextField, Button } from "@mui/material"
 import styles from "./DataIntegral.module.scss"
-import { integralsMethods, stepsVersions, methodLeft, methodRight, methodParabol, methodTrap } from "./helpers/allMethods"
+import { integralsMethodsRegular, integralsMethodsVariable, stepsVersions, methodLeft, methodRight, methodParabol, methodTrap, methodLeftVariable } from "./helpers/allMethods"
 
 export const DataIntegral = () => {
-  const [method, setMethod] = React.useState("right"); // выбранный метод интегрирования
+  const [method, setMethod] = React.useState("left"); // выбранный метод интегрирования
   const [step, setStep] = React.useState("regular"); // выбранный тип шага
   const [func, setFunc] = React.useState("x / 2"); // введенная пользователем функция
   const [pieces, setPieces] = React.useState(1); // введенное пользователем количество разбиений
@@ -57,6 +57,12 @@ export const DataIntegral = () => {
         default:
           break;
       }
+    } else {
+      switch (method) {
+        case "left":
+          result = methodLeftVariable(func, parsedLowerLimit, parsedUpperLimit, parsedPieces)  
+      }
+
     }
     
   
@@ -76,7 +82,11 @@ export const DataIntegral = () => {
       value={method}
       onChange={(event) => setMethod(event.target.value)}
     >
-      {integralsMethods.map((option) => (
+      {(step === "regular") ? integralsMethodsRegular.map((option) => (
+        <MenuItem key={option.value} value={option.value}>
+          {option.label}
+        </MenuItem>
+      )) : integralsMethodsVariable.map((option) => (
         <MenuItem key={option.value} value={option.value}>
           {option.label}
         </MenuItem>
