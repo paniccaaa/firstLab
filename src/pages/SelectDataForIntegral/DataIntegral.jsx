@@ -110,7 +110,7 @@ export const DataIntegral = () => {
     <TextField helperText="Введите кол-во разбиений" value={pieces} onChange={handlePiecesChange} />
     <TextField helperText="Введите нижний предел" value={lowerLimit} onChange={handleLowerLimitChange} />
     <TextField helperText="Введите верхний предел" value={upperLimit} onChange={handleUpperLimitChange} />
-    <Button variant="contained" onClick={() => alert(calculateIntegral())}>Вычислить интеграл</Button>
+    <Button variant="contained" onClick={() => console.log(calculateIntegral())}>Вычислить интеграл</Button>
   </div>
   )
 }

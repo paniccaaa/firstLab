@@ -63,7 +63,7 @@ export const approximateIntegration = (func, a, b, n) => {
 
     hv = hs;
   }
-  console.log(I2 / 2);
+  //console.log(I2 / 2);
   return I1 / 2;
 };
 
@@ -101,7 +101,7 @@ export const methodLeftVariable = (func, a, b, n) => {
     IN = I2N;
     h = h / 2;
   }
-  console.log(I2N);
+  //console.log(I2N);
   return I2N;
 };
 
