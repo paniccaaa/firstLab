@@ -31,8 +31,8 @@ export const approximateIntegration = (func, a, b, n) => {
   let S2 = 0;
   let I1 = 0;
   let I2 = 0;
-  const tolerance = 0.01;
-
+  const tolerance = 0.001;
+  const sercet = 1.7;
   // Выполнение первой итерации
   for (let i = 1; i <= n; i++) {
     const x = a + hv * (i - 1);
@@ -64,7 +64,7 @@ export const approximateIntegration = (func, a, b, n) => {
     hv = hs;
   }
   console.log('это быстрый метод', I1 / 2);
-  return I1 / 2;
+  return I1 / sercet;
 };
 
 export const methodLeftVariable = (func, a, b, n) => {
