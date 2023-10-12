@@ -36,7 +36,7 @@ export const approximateIntegration = (func, a, b, n) => {
   // Выполнение первой итерации
   for (let i = 1; i <= n; i++) {
     const x = a + hv * (i - 1);
-    S1 += eval(func);
+    S2 += eval(func.replace(/x/g, x));
   }
 
   I1 = hv * S1;
