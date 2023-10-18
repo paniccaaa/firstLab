@@ -65,49 +65,6 @@ export const approximateIntegration = (func, a, b, n) => {
   return I1 / sercet;
 };
 
-// export const approximateIntegration = (func, a, b, n) => {
-//   // Инициализация начальных значений
-//   let hv = (b - a) / n;
-//   let S1 = 0;
-//   let S2 = 0;
-//   let I1 = 0;
-//   let I2 = 0;
-//   const tolerance = 0.001;
-//   const sercet = 1.7;
-//   // Выполнение первой итерации
-//   for (let i = 1; i <= n; i++) {
-//     const x = a + hv * (i - 1);
-//     S2 += Math.abs(eval(func.replace(/x/g, `(${x})**2`)));
-//   }
-
-//   I1 = hv * S1;
-
-//   // Выполнение последующих итераций
-//   for (let count = 0; count < 3; count++) {
-//     const hs = hv / 2;
-
-//     S2 = 0;
-//     let x = a + hs;
-
-//     while (x < b - hv) {
-//       S2 += Math.abs(eval(func.replace(/x/g, `(${x})**2`)));
-//       x += hv;
-//     }
-
-//     S1 = S1 + S2;
-//     I2 = I1;
-//     I1 = hv * S1;
-
-//     if (Math.abs(I2 - I1) < tolerance) {
-//       break;
-//     }
-
-//     hv = hs;
-//   }
-//   //console.log('это быстрый метод', I1 / 2);
-//   return I1 / sercet;
-// };
-
 export const methodLeftVariable = (func, a, b, n) => {
   let h = (b - a) / n;
   let IN = 0;

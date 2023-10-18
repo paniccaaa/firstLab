@@ -11,6 +11,7 @@ export const DataIntegral = () => {
   const [lowerLimit, setLowerLimit] = React.useState(0); // введенный пользователем нижний предел интегрирования
   const [upperLimit, setUpperLimit] = React.useState(1);
   
+  
 
   const handleFuncChange = (event) => {
     setFunc(event.target.value);
