@@ -4,25 +4,23 @@ export const methodRight = (funcStr, lowerLimit, upperLimit, partitions) => {
   let sum = 0;
   for (let i = 1; i <= partitions; i++) {
     const x = lowerLimit + i * dx; // правая граница прямоугольника
-    const y = eval(funcStr.replace(/x/g, x)); // значение функции в точке x
+    const y = Math.abs(eval(funcStr.replace(/x/g, x))); // значение функции в точке x
     sum += y * dx; // площадь прямоугольника
   }
 
   return sum;
-}
-
-
+};
 
 export const methodLeft = (func, a, b, pieces) => {
   let step = (b - a) / pieces;
   let x = a;
   let ans = 0;
   while (x < b) {
-    ans = ans + eval(func.replace(/x/g, x));
+    ans = ans + Math.abs(eval(func.replace(/x/g, x)));
     x += step;
   }
   return ans * step;
-}
+};
 
 export const approximateIntegration = (func, a, b, n) => {
   // Инициализация начальных значений
@@ -36,7 +34,7 @@ export const approximateIntegration = (func, a, b, n) => {
   // Выполнение первой итерации
   for (let i = 1; i <= n; i++) {
     const x = a + hv * (i - 1);
-    S2 += eval(func.replace(/x/g, x));
+    S2 += Math.abs(eval(func.replace(/x/g, x)));
   }
 
   I1 = hv * S1;
@@ -49,7 +47,7 @@ export const approximateIntegration = (func, a, b, n) => {
     let x = a + hs;
 
     while (x < b - hv) {
-      S2 += eval(func.replace(/x/g, x));
+      S2 += Math.abs(eval(func.replace(/x/g, x)));
       x += hv;
     }
 
@@ -63,9 +61,52 @@ export const approximateIntegration = (func, a, b, n) => {
 
     hv = hs;
   }
-  console.log('это быстрый метод', I1 / 2);
+  //console.log('это быстрый метод', I1 / 2);
   return I1 / sercet;
 };
+
+// export const approximateIntegration = (func, a, b, n) => {
+//   // Инициализация начальных значений
+//   let hv = (b - a) / n;
+//   let S1 = 0;
+//   let S2 = 0;
+//   let I1 = 0;
+//   let I2 = 0;
+//   const tolerance = 0.001;
+//   const sercet = 1.7;
+//   // Выполнение первой итерации
+//   for (let i = 1; i <= n; i++) {
+//     const x = a + hv * (i - 1);
+//     S2 += Math.abs(eval(func.replace(/x/g, `(${x})**2`)));
+//   }
+
+//   I1 = hv * S1;
+
+//   // Выполнение последующих итераций
+//   for (let count = 0; count < 3; count++) {
+//     const hs = hv / 2;
+
+//     S2 = 0;
+//     let x = a + hs;
+
+//     while (x < b - hv) {
+//       S2 += Math.abs(eval(func.replace(/x/g, `(${x})**2`)));
+//       x += hv;
+//     }
+
+//     S1 = S1 + S2;
+//     I2 = I1;
+//     I1 = hv * S1;
+
+//     if (Math.abs(I2 - I1) < tolerance) {
+//       break;
+//     }
+
+//     hv = hs;
+//   }
+//   //console.log('это быстрый метод', I1 / 2);
+//   return I1 / sercet;
+// };
 
 export const methodLeftVariable = (func, a, b, n) => {
   let h = (b - a) / n;
@@ -74,11 +115,11 @@ export const methodLeftVariable = (func, a, b, n) => {
   let x = a;
   let E = 0.01;
 
-  S2 = S2 + eval(func.replace(/x/g, x));
+  S2 = S2 + Math.abs(eval(func.replace(/x/g, x)));
   x = x + h;
 
   while (x <= b - h) {
-    S2 = S2 + eval(func.replace(/x/g, x));
+    S2 = S2 + Math.abs(eval(func.replace(/x/g, x)));
     x = x + h;
   }
 
@@ -92,7 +133,7 @@ export const methodLeftVariable = (func, a, b, n) => {
     x = a + h / 2;
 
     while (x <= b - h) {
-      I2N = I2N + eval(func.replace(/x/g, x));
+      I2N = I2N + Math.abs(eval(func.replace(/x/g, x)));
       x = x + h;
     }
 
@@ -101,7 +142,7 @@ export const methodLeftVariable = (func, a, b, n) => {
     IN = I2N;
     h = h / 2;
   }
-  console.log('это медленный метод', I2N);
+  //console.log('это медленный метод', I2N);
   return I2N;
 };
 
@@ -110,13 +151,15 @@ export const methodParabol = (func, a, b, pieces) => {
   let x = a + step;
   let ans = 0;
   while (x < b - step) {
-    ans += 4 * eval(func.replace(/x/g, x));
-    ans += 2 * eval(func.replace(/x/g, x + step));
+    ans += 4 * Math.abs(eval(func.replace(/x/g, x)));
+    ans += 2 * Math.abs(eval(func.replace(/x/g, x + step)));
     x += step * 2;
   }
   ans =
     (step / 3) *
-    (ans + eval(func.replace(/x/g, a)) + eval(func.replace(/x/g, b)));
+    (ans +
+      Math.abs(eval(func.replace(/x/g, a))) +
+      Math.abs(eval(func.replace(/x/g, b))));
 
   return ans;
 };
@@ -127,12 +170,17 @@ export const methodTrap = (func, a, b, pieces) => {
   let ans = 0;
   while (x < b - step) {
     ans +=
-      (eval(func.replace(/x/g, x)) + eval(func.replace(/x/g, x + step))) / 2;
+      (Math.abs(eval(func.replace(/x/g, x))) +
+        Math.abs(eval(func.replace(/x/g, x + step)))) /
+      2;
     x += step;
   }
   ans =
     step *
-    ((eval(func.replace(/x/g, a)) + eval(func.replace(/x/g, b))) / 2 + ans);
+    ((Math.abs(eval(func.replace(/x/g, a))) +
+      Math.abs(eval(func.replace(/x/g, b)))) /
+      2 +
+      ans);
 
   return ans;
 };

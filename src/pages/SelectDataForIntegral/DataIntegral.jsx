@@ -68,7 +68,6 @@ export const DataIntegral = () => {
         default:
           break;
         } 
-
     }
     
     return result;
